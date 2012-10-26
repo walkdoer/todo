@@ -1,6 +1,7 @@
 var http = require('http'),
     url  = require('url'),
     fs   = require("fs"),
+    qs   = require('querystring'),
     server;
 
 server = http.createServer(function (req,res) {
@@ -14,8 +15,15 @@ server = http.createServer(function (req,res) {
     res.writeHead(200, {"Content-Type":"text/html; charset=utf-8"});
 
     if (action === "/Signup") {
-       user = urlData.query;
-       res.end("<h1>" + user.username + "歡迎您的加入</h1><p>我們已經將會員啟用信寄至" + user.email + "</p>");
+        formData = '';
+	    req.on("data", function (data) {
+	        formData += data;
+	    });
+
+	    req.on("end", function () {
+	        user = qs.parse(formData);
+	        res.end("<h1>" + user.username + "歡迎您的加入</h1><p>我們已經將會員啟用信寄至" + user.email + "</p>");
+	    });
     }
     else {
         fs.readFile(filePath, encode, function(err, file) {
