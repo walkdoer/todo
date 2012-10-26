@@ -1,26 +1,33 @@
 var app = require('express').createServer(),
-port = 1337;
+    port = 1337,
+    users = [
+        {name: 'Clonn'},
+        {name: 'Chi'}
+    ];
 
 app.listen(port);
 
-app.get('/', function(req, res){
-    res.send('hello world');
-});
-
-app.get('/test', function(req, res){
-    res.send('test');
-});
-
-app.get('/app', function(req, res){
-    res.send('app');
+app.all('/user/:id/:op?', function(req, res, next){
+    req.user = users[req.params.id];
+    if (req.user) {
+    	console.log('next');
+        next();
+    } else {
+        next(new Error('cannot find user ' + req.params.id));
+    }
 });
 
 app.get('/user/:id', function(req, res){
-    res.send('user id:' + req.params.id);
+    res.send('viewing ' + req.user.name);
 });
 
-app.get(/^\/ip?(?:\/(\d{2,3})(?:\.(\d{2,3}))(?:\.(\d{2,3}))(?:\.(\d{2,3})))?/, function(req, res){
-    res.send(req.params);
+app.get('/user/:id/edit', function(req, res){
+    res.send('editing ' + req.user.name);
+});
+
+app.get('/user/:id/delete', function(req, res){
+	console.log('delete');
+    res.send('deleting ' + req.user.name);
 });
 
 app.get('*', function(req, res){
