@@ -1,0 +1,89 @@
+* {-webkit-tap-highlight-color:rgba(255,255,255,0);}
+body {
+	/*background-image: url("../images/bg.jpg");*/
+	background-color: #f3f3f3;
+	background-repeat: repeat-x;
+	background-attachment: fixed;
+	background-position: 0px 45px;
+}
+.top{ 
+	position: fixed;
+	top: 0px;
+	min-width: 320px;
+	width: 100%;
+	-webkit-box-shadow:0px 3px 5px #F1F1F1;
+}
+.gray-gradient {
+	background-color: #f3f3f3;
+	/*
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3f3f3), color-stop(50%, #dddddd), color-stop(50%, #d2d2d2), color-stop(100%, #dfdfdf));
+	background-image: -webkit-linear-gradient(top, #f3f3f3 0%, #E0E0E0 50%, #E0E0E0 60%, #dfdfdf 100%);
+	background-image: -moz-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
+	background-image: -ms-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
+	background-image: -o-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
+	background-image: linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
+	*/
+	background-image: -webkit-linear-gradient(top,#FAFAFA,#EAEAEA);
+	background-image: -moz-linear-gradient(top,#FAFAFA,#EAEAEA);
+	background-image: -ms-linear-gradient(top,#FAFAFA,#EAEAEA);
+	background-image: -o-linear-gradient(top,#FAFAFA,#EAEAEA);
+	background-image: linear-gradient(top,#FAFAFA,#EAEAEA);
+	border-bottom: 1px solid #cacaca;
+}
+.top ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.top ul li {
+	display: block;
+	float: left;
+	height: 35px;
+	line-height: 35px;
+}
+
+.top ul li a:hover {
+	background-color: #a5b8da;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a5b8da), color-stop(100%, #7089b3));
+    background-image: -webkit-linear-gradient(top, #a5b8da, #7089b3);
+    background-image: -moz-linear-gradient(top, #a5b8da, #7089b3);
+    background-image: -ms-linear-gradient(top, #a5b8da, #7089b3);
+    background-image: -o-linear-gradient(top, #a5b8da, #7089b3);
+    background-image: linear-gradient(top, #a5b8da, #7089b3);
+}
+.top ul .search {
+	float: right;
+	margin-right: 10px;
+}
+.top ul .search-box {
+	width: 140px;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	outline: none;
+	padding: 3px 8px;
+}
+.top ul li .search-box:focus {
+	border-color: #51A7E8;
+	box-shadow: rgba(81, 167, 232, 0.5) 0 0 3px,inset rgba(0, 0, 0, 0.2) 0 1px 1px;
+}
+.top ul li a {
+	display: block;
+	padding: 0px 8px;
+	height: 100%;
+	color: #0B0B0B;
+	text-shadow: #CCC 1px 1px 2px;
+}
+.top ul li a:hover {
+	color: #FFF;
+}
+
+#wrapper {
+	margin: 40px 5px 0px 5px;
+	min-width: 320px;
+}
+#header {
+
+}
+#footer {
+	
+}
