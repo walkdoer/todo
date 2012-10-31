@@ -1,6 +1,6 @@
 <div class="box">
   <div id="todo-list" class="box">
-    <h2>待办事项</h2>
+    <h2><span class="pre"></span>TODO LIST<span class="next"></span></h2>
     <ul>
       <% for (var i = 0, len = todos.length; i < len; i++) {
         var todo = todos[i];
@@ -8,12 +8,11 @@
       %>
         <li <%- status %>>
           <% if (!todo.finished) { %>
-            <%= todo.title %>
-            &nbsp;
+            <span class="title"><%= todo.title %></span>
+           
             <a class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
           <% } else { %>
-            <del><%= todo.title %></del>
-            &nbsp;
+            <del class="del"><%= todo.title %></del>
             <a class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
           <% } %>
           <a class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
@@ -23,12 +22,11 @@
     </ul>
   </div>
 
-  <div class="box post">
-    <h2>新增</h2>
+  <div id="new-item">
     <form action="/todo/new" method="post" id="post_new">
-      <input type="hidden" name="_csrf" value="<%- _csrf %>" />
-      <p><input type="text" name="title" class="long_txt" /></p>
-      <p><input type="submit" class="submit" value="添加" /></p>
+      <input type="hidden" name="_csrf" id="csrf" value="<%- _csrf %>" />
+      <input type="text" name="title" id="item-title" class="long_txt" />
+      <input type="submit" class="submit btn" value="添加" />
     </form>
   </div>
 

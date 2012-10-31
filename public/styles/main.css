@@ -1,4 +1,7 @@
 * {-webkit-tap-highlight-color:rgba(255,255,255,0);}
+body{
+  font-family: Microsoft YaHei,SimSun;
+}
 /*****
  * button
  */
@@ -101,6 +104,21 @@
      -moz-box-shadow: none;
           box-shadow: none;
 }
+
+/*************Input***************/
+
+input {
+  border: 1px solid #DDD;
+  border-radius: 3px;
+  outline: none;
+  padding: 3px 8px;
+}
+input:focus {
+  border-color: #51A7E8;
+  box-shadow: rgba(81, 167, 232, 0.5) 0 0 3px,inset rgba(0, 0, 0, 0.2) 0 1px 1px;
+}
+
+
 body {
 	background-color: #fAfAfA;
 	background-repeat: repeat-x;
@@ -110,20 +128,12 @@ body {
 .top{ 
 	position: fixed;
 	top: 0px;
-	min-width: 320px;
+  z-index:9000;
 	width: 100%;
 	-webkit-box-shadow:0px 3px 5px #F1F1F1;
 }
 .gray-gradient {
 	background-color: #f3f3f3;
-	/*
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3f3f3), color-stop(50%, #dddddd), color-stop(50%, #d2d2d2), color-stop(100%, #dfdfdf));
-	background-image: -webkit-linear-gradient(top, #f3f3f3 0%, #E0E0E0 50%, #E0E0E0 60%, #dfdfdf 100%);
-	background-image: -moz-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
-	background-image: -ms-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
-	background-image: -o-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
-	background-image: linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
-	*/
 	background-image: -webkit-linear-gradient(top,#FAFAFA,#EAEAEA);
 	background-image: -moz-linear-gradient(top,#FAFAFA,#EAEAEA);
 	background-image: -ms-linear-gradient(top,#FAFAFA,#EAEAEA);
@@ -189,7 +199,6 @@ body {
 
 #wrapper {
 	margin: 40px  0px 0px 0px ;
-	min-width: 320px;
 }
 #header {
 
@@ -201,20 +210,91 @@ body {
 /****************
  * 首页Todo列表
  ****************/
-#todo-list{}
-#todo-list h2{}
-#todo-list ul{list-style: none;}
-#todo-list ul li{display: block;padding:5px;}
-#todo-list ul li:hover{background-color: #F1F1F1; color: #121212}
+#todo-list{
+  text-align: center;
+}
+#todo-list h2{
+  display: block;
+  padding: 5px;
+  width: 150px;
+  margin: 0px auto;
+  text-shadow: 2px 2px 2px #CCC;
+  text-align: center;
+  text-indent: 4px;
+  box-shadow: 0 0 10px rgba(120, 120, 120, .5) inset;
+  position: relative;
+}
+#todo-list h2 .next{
+  border-width: 10px 0px 10px 10px;
+  border-style: solid;
+  border-color: #fAfAfA #000;
+  position: absolute;
+  top: 9px;
+  right: 6px;
+  display: block;
+  width: 0; /* firefox */
+}
 
+#todo-list h2 .pre{
+  border-width: 10px 10px 10px 0px;
+  border-style: solid;
+  border-color: #fAfAfA #000; 
+  position: absolute;
+  top: 9px;
+  left: 6px;
+  display: block;
+  width: 0; /* firefox */
+  box-shadow:-10px 0 10px red, box-shadow:10px 0 10px blue,box-shadow:0 -10px 10px yellow,box-shadow:0 10px 10px green;
+}
+#todo-list ul{
+  list-style: none;
+  text-align: left;
+}
+#todo-list ul li{
+  display: block;
+  padding:5px 2px;
+  border-right-style: : 5px solid #fAfAfA;
+}
+#todo-list ul li:hover{
+  background-color: #F1F1F1; 
+  color: #121212;
+  border-right: 5px solid #000;
+}
+#todo-list ul li .title{
+  display: inline-block;
+  padding: 5px;
+  width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#todo-list ul li .del{
+  display: inline-block;
+  padding: 5px;
+  width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 #todo-list ul li a{}
+
+#new-item {
+  margin: 10px 5px 5px 0px;
+  text-align: right; 
+}
+#new-item #post_new #item-title{
+  height: 22px;
+}
+#new-item #post_new .submit{
+  margin-bottom: 1px;
+}
 /****************
  * 底部工具栏
  ****************/
 #bbar {
+  z-index: 9000;
 	position: fixed;
 	bottom: 0px;
-	min-width: 320px;
 	width: 100%;
 	color: #FFF;
 }
