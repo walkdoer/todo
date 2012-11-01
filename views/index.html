@@ -10,13 +10,13 @@
           <% if (!todo.finished) { %>
             <span class="title"><%= todo.title %></span>
            
-            <a class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
+            <a id="btn-save" class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
           <% } else { %>
             <del class="del"><%= todo.title %></del>
-            <a class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
+            <a id="btn-recover" class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
           <% } %>
-          <a class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
-          <a class="btn" href="/todo/<%- todo._id%>/delete" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
+          <a id="btn-edit" class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
+          <a id="btn-del" class="btn" href="/todo/<%- todo._id%>/delete" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
         </li>
       <% } %>
     </ul>

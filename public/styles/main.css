@@ -158,14 +158,11 @@ body {
 #top #list-slider{
   display: block;
   width: 150px;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-weight: bold;
   color:#3B3B3B;
-
   margin: 0px auto;
-  text-shadow: 0px -1px 2px #CCC;
   text-align: center;
-  text-indent: 4px;
   /*box-shadow: 0 0 10px rgba(120, 120, 120, .5) inset;*/
   position: relative;
 }
@@ -175,18 +172,22 @@ body {
   border-color: #FAFAFA #333 #EAEAEA #333;
   position: absolute;
   top: 9px;
-  right: 6px;
+  right: 0px;
   display: block;
   width: 0; /* firefox */
 }
-
+#top #list-slider .title{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #C6C6C4;
+  text-shadow: 0px -1px 1px #A3A1A2;
+}
 #top #list-slider .pre{
   border-width: 10px 10px 10px 0px;
   border-style: solid;
   border-color: #FAFAFA #333 #EAEAEA #333; 
   position: absolute;
   top: 9px;
-  left: 6px;
+  left: 0px;
   display: block;
   width: 0; /* firefox */
   box-shadow:-10px 0 10px red, box-shadow:10px 0 10px blue,box-shadow:0 -10px 10px yellow,box-shadow:0 10px 10px green;
@@ -194,7 +195,7 @@ body {
 
 
 #wrapper {
-	margin: 40px  0px 0px 0px ;
+	margin: 50px  0px 0px 0px ;
 }
 #header {
 
@@ -217,12 +218,12 @@ body {
 #todo-list ul li{
   display: block;
   padding:5px 2px;
-  border-right-style: : 5px solid #fAfAfA;
+  border-left:5px solid #FAFAFA;
 }
 #todo-list ul li:hover{
   background-color: #F1F1F1; 
   color: #121212;
-  border-right: 5px solid #000;
+  border-left: 5px solid #5e92db;
 }
 #todo-list ul li .title{
   display: inline-block;
@@ -240,7 +241,9 @@ body {
   white-space: nowrap;
   overflow: hidden;
 }
-#todo-list ul li a{}
+#todo-list ul li a{
+  display: none;
+}
 
 #new-item {
   margin: 10px 5px 5px 0px;
@@ -280,4 +283,11 @@ body {
 #bbar ul li span:hover {
 	background-color: #A8C030;
 	color: #000;
+}
+
+#edit-todo {
+  padding: 5px;
+}
+#edit-todo h2 {
+  margin-bottom: 10px;
 }

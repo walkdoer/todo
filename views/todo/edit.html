@@ -1,0 +1,9 @@
+<div id="edit-todo">
+  <h2>修改</h2>
+  <form action="?" method="post">
+    <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+    <input type="text" name="title" class="long_txt" value="<%= todo.title %>" />
+    <input type="submit" class="submit" value="提交" />
+  </form>
+</div>
+
