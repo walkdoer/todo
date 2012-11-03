@@ -267,6 +267,7 @@ body {
 	width: 100%;
 	color: #FFF;
 }
+/*
 #bbar ul {
 	margin: 0px;
 	padding: 0px;
@@ -286,7 +287,23 @@ body {
 	background-color: #A8C030;
 	color: #000;
 }
-
+*/
+#bbar .add-box{
+  display: -webkit-box;
+  padding: 5px;
+}
+#bbar .add-box #todo-text-add{
+  height: 24px;
+  margin-right: 5px;
+  display: block;
+  -webkit-box-flex:1;
+}
+#bbar .add-box #todo-btn-add{
+  -webkit-box-flex:0;
+  display: block;
+  height: 32px;
+  width: 70px;
+}
 #edit-todo {
   padding: 5px;
 }
