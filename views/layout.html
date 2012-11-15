@@ -6,10 +6,11 @@
 <link rel="stylesheet" type="text/css" href="/public/styles/common.css">
 <link rel="stylesheet" type="text/css" href="/public/styles/main.css">
 <script type="text/javascript" src="/public/lib/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/public/lib/iscroll.js"></script>
 <script type="text/javascript" src="/public/js/main.js"></script>
 <body>
 
-<div id="top" class="gray-gradient">
+<div id="top" class="black-gradient">
   <div id="list-slider">
   	<span class="pre"></span>
   	<span class="title">TODO LIST</span>
@@ -19,10 +20,13 @@
 <div id="wrapper">
     <%- body %>
 </div>
-<div id="bbar">
+<div id="bbar" class="gray-gradient">
     <div class="add-box">
-        <input id="todo-text-add" type="text" placeholder="添加待办"/>
-        <button id="todo-btn-add" class="btn">添加</button>
+      <form action="/todo/new" method="post" id="post_new">
+        <input type="hidden" name="_csrf" id="csrf" value="<%- _csrf %>" />
+        <input id="todo-text-add" name="title" type="text" placeholder="添加待办"/>
+        <button id="todo-btn-add" type="submit" class="btn">添加</button>
+        </form>
     </div>
 </div>
 </body>
