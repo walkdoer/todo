@@ -1,72 +1,83 @@
 <div class="box">
   <div id="todo-list" class="box">
-    <h2></h2>
-    <ul class="list" id="list-1">
-      <p>list 1</p>
-      <% for (var i = 0, len = todos.length; i < len; i++) {
-        var todo = todos[i];
-        var status = todo.finished ? 'class="finished"' : '';
-      %>
-        <li <%- status %>>
-          <% if (!todo.finished) { %>
-            <span class="title"><%= todo.title %></span>
-            <div class="btns">
-            <a id="btn-save" class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
-          <% } else { %>
-            <del class="del"><%= todo.title %></del>
-            <div class="btns">
-            <a id="btn-recover" class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
+    <div id="scroll-wrapper-todo" class="scroll_wrapper">
+      <div class="scroller">
+        <ul class="list" id="list-1">
+          <p>to</p>
+          <% for (var i = 0, len = todos.length; i < len; i++) {
+            var todo = todos[i];
+            var status = todo.finished ? 'class="finished"' : '';
+          %>
+            <li <%- status %>>
+              <% if (!todo.finished) { %>
+                <span class="title"><%= todo.title %></span>
+                <div class="btns">
+                <a id="btn-save" class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
+              <% } else { %>
+                <del class="del"><%= todo.title %></del>
+                <div class="btns">
+                <a id="btn-recover" class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
+              <% } %>
+              <a id="btn-edit" class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
+              <a id="btn-del" class="btn" href="/todo/<%- todo._id%>/delete" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
+            </div>
+            </li>
           <% } %>
-          <a id="btn-edit" class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
-          <a id="btn-del" class="btn" href="/todo/<%- todo._id%>/delete" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
-        </div>
-        </li>
-      <% } %>
-    </ul>
-    <ul class="list" id="list-2">
-      <p>list 2</p>
-      <% for (var i = 0, len = todos.length; i < len; i++) {
-        var todo = todos[i];
-        var status = todo.finished ? 'class="finished"' : '';
-      %>
-        <li <%- status %>>
-          <% if (!todo.finished) { %>
-            <span class="title"><%= todo.title %></span>
-            <div class="btns">
-            <a id="btn-save" class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
-          <% } else { %>
-            <del class="del"><%= todo.title %></del>
-            <div class="btns">
-            <a id="btn-recover" class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
+        </ul>
+      </div>
+    </div>
+    <div id="scroll-wrapper-doing" class="scroll_wrapper">
+      <div class="scroller">
+        <ul class="list" id="list-2">
+          <p>Doing</p>
+          <% for (var i = 0, len = todos.length; i < len; i++) {
+            var todo = todos[i];
+            var status = todo.finished ? 'class="finished"' : '';
+          %>
+            <li <%- status %>>
+              <% if (!todo.finished) { %>
+                <span class="title"><%= todo.title %></span>
+                <div class="btns">
+                <a id="btn-save" class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
+              <% } else { %>
+                <del class="del"><%= todo.title %></del>
+                <div class="btns">
+                <a id="btn-recover" class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
+              <% } %>
+              <a id="btn-edit" class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
+              <a id="btn-del" class="btn" href="/todo/<%- todo._id%>/delete" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
+            </div>
+            </li>
           <% } %>
-          <a id="btn-edit" class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
-          <a id="btn-del" class="btn" href="/todo/<%- todo._id%>/delete" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
-        </div>
-        </li>
-      <% } %>
-    </ul>
-    <ul class="list" id="list-3">
-      <p>list 3</p>
-      <% for (var i = 0, len = todos.length; i < len; i++) {
-        var todo = todos[i];
-        var status = todo.finished ? 'class="finished"' : '';
-      %>
-        <li <%- status %>>
-          <% if (!todo.finished) { %>
-            <span class="title"><%= todo.title %></span>
-            <div class="btns">
-            <a id="btn-save" class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
-          <% } else { %>
-            <del class="del"><%= todo.title %></del>
-            <div class="btns">
-            <a id="btn-recover" class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
+        </ul>
+      </div>
+    </div>
+    <div id="scroll-wrapper-done" class="scroll_wrapper">
+      <div class="scroller">
+        <ul class="list" id="list-3">
+          <p>done</p>
+          <% for (var i = 0, len = todos.length; i < len; i++) {
+            var todo = todos[i];
+            var status = todo.finished ? 'class="finished"' : '';
+          %>
+            <li <%- status %>>
+              <% if (!todo.finished) { %>
+                <span class="title"><%= todo.title %></span>
+                <div class="btns">
+                <a id="btn-save" class="btn" href="/todo/<%- todo._id%>/finish?status=yes">完成</a>
+              <% } else { %>
+                <del class="del"><%= todo.title %></del>
+                <div class="btns">
+                <a id="btn-recover" class="btn" href="/todo/<%- todo._id%>/finish?status=no">恢复</a>
+              <% } %>
+              <a id="btn-edit" class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
+              <a id="btn-del" class="btn" href="/todo/<%- todo._id%>/delete" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
+            </div>
+            </li>
           <% } %>
-          <a id="btn-edit" class="btn" href="/todo/<%- todo._id%>/edit">修改</a>
-          <a id="btn-del" class="btn" href="/todo/<%- todo._id%>/delete" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a>
-        </div>
-        </li>
-      <% } %>
-    </ul>
+        </ul>
+      </div>
+    </div><!--end of scroll-wrapper-->
   </div>
 </div>
 

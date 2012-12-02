@@ -4,131 +4,94 @@
  */
 
 $(function () {
+    'use strict';
     var todoList = $('#todo-list').find('ul>li'),
-        last = null,
-        doc = document,
-        $list = $('.list'),
-        initialIndex = 'list-1',
-        currentIndex = 0,
-        $currentTab,
-        time = 0,
-        isMove = false,
-        startPos = {},//触屏start点
-        endPos = {},//触屏end点
-        tabNum = $list.length,
-        nextIndex = '',
-        lastLi = null,
-        /*常量*/
-        ALLOWRANGE = 100,
-        DIRECT = {
-            LEFT: 'l',
-            RIGHT: 'r'
-        };
-    /**
-     * 手势的方向
-     * return left/right
-     */
-    function gesture (startPos, endPos) {
-        var validGesture = Math.abs(startPos.y - endPos.y) < ALLOWRANGE;
-        if (startPos.x < endPos.x && validGesture) {
-            return DIRECT.RIGHT;
-        } else if(validGesture){
-            return DIRECT.LEFT;
+        $scrollWrapper = $('.scroll_wrapper'),
+        last = {},
+        scroll = {},
+        initialIndex = 'scroll-wrapper-todo',
+        $currentTab;
+
+
+    function createScroller(wrapper) {
+        var id = wrapper.attr('id');
+        if (!scroll[id]) {
+            scroll[id] = new iScroll(id);
         }
+    }
+    //初始化slider
+    function initSlider($list) {
+        var $pre = $('.pre'),
+            i = 0,
+            count = $list.length,
+            $next = $('.next');
+
+        $pre.on('click', function () {
+            var $clist;
+            i -= 1;
+            if (i < 0) {
+                i = 0;
+                return;
+            }
+            $list.hide();
+            $clist = $list.eq(i).show();
+            createScroller($clist);
+        });
+        $next.on('click', function () {
+            var $cList;
+            i += 1;
+            if (i >= count) {
+                i = count - 1;
+                return;
+            }
+            $list.hide();
+            $cList = $list.eq(i).show();
+            createScroller($cList);
+        });
     }
 
-    function isHorize(startPos, endPos) {
-        var disY = Math.abs(startPos.y - endPos.y),
-            disX = Math.abs(startPos.x - endPos.x);
-        if (disX > 100 && disY < 20) {
-            return true;
-        }
-        return false;
-    }
+    function bindEvents() {
+        //绑定click处理事件
+        todoList.on('click',function () {
+            var $this = $(this),
+                $a = $this.find('a');
+            if(last.$a && last.$li) {
+                last.$a.hide();
+                last.$li.removeClass('list-item-active');
+            }
+            $a.show();
+            $this.addClass('list-item-active');
+            last.$a = $a;
+            last.$li = $this;
+        });
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, false);
+        //处理touch事件
+        document.addEventListener('touchstart', function (e) {
 
-    function isVert(startPos, endPos) {
-        var disY = Math.abs(startPos.y - endPos.y),
-            disX = Math.abs(startPos.x - endPos.x);
-        if (disY > 100 && disX < 20) {
-            return true;
-        }
-        return false;
-    }
-    function distance (startPos, endPos) {
-        return endPos.y - startPos.y;
-    }
-    //绑定click处理事件
-    todoList.click(function(e) {
-        var $this = $(this),
-            $a = $this.find('a');
-        if(last) {
-            last.hide();
-            lastLi.removeClass('list-item-active');
-        }
-        $a.show();
-        $this.addClass('list-item-active');
-        last = $a;
-        lastLi = $this;
-    });
-    //初始化数据界面
-    $list.each(function () {
-        $this = $(this);
-        if (this.id === initialIndex) {
-            $currentTab = $this;
-            $this.show();
-        } else {
-            $this.hide();
-        }
-    });
-    window.onResize = function (e) {
-        //console.log("resize");
-    };
+        });
+        document.addEventListener('touchend', function (e) {
 
-    //处理touch事件
-    document.addEventListener('touchstart', function (e) {
-        console.log("touchstart");
-        var touch = e.touches[0];
-        startPos.x = touch.pageX;
-        startPos.y = touch.pageY;
-        //console.log(startPos);
-    });
-    document.addEventListener('touchend', function (e) {
-        var direct;
-        if (!isMove && isVeri()) {
-            return;
-        }
-        direct = gesture(startPos, endPos);
-        console.log(direct);
-        switch (direct) {
-            case DIRECT.RIGHT:
-                if (currentIndex > 0) {
-                    currentIndex -= 1;
-                }
-                break;
-            case DIRECT.LEFT:
-                if (currentIndex < tabNum - 1) {
-                    currentIndex += 1;
-                }
-                break;
-        }
-        
-        var $tab = $list.eq(currentIndex);
-        if ($tab) {
-            $currentTab.hide();
-            $tab.show();
-            $currentTab = $tab;
-        }
-    });
-    document.addEventListener('touchmove', function (e) {
-        var dis = distance(startPos,endPos);
-        e.preventDefault();
-        var touch = e.touches[0];
-        endPos.x = touch.pageX;
-        endPos.y = touch.pageY;
-        isMove = true;
-        //console.log(dis);
-        if (isVert(startPos, endPos)) {
-            window.scrollTo(0, window.scrollY + dis);
-        }
-    });
+        });
+    }
+    function init() {
+        //初始化数据界面
+        $scrollWrapper.each(function () {
+            var $this = $(this),
+                id = this.id;
+            if (this.id === initialIndex) {
+                scroll[id] = new iScroll(id),
+                $currentTab = $this;
+                $this.show();
+            } else {
+                $this.hide();
+            }
+        });
+        initSlider($scrollWrapper);
+        bindEvents();
+    }
+    
+    init();
+    
 });
