@@ -217,6 +217,9 @@ body {
 #todo-list .scroll_wrapper {
   position:relative; z-index:1;
   top:0px; bottom:0px; left:0px;
+  margin: 5px;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow:0px 0px 5px #CCC;
 }
 #todo-list .scroll_wrapper .scroller{
   position:absolute; z-index:1;
@@ -287,27 +290,6 @@ body {
 	width: 100%;
 	color: #FFF;
 }
-/*
-#bbar ul {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-#bbar ul li {
-	display: block;
-	float: left;
-	height: 45px;
-	line-height: 45px;
-}
-#bbar ul li span{
-	height: 100%; display: inline-block;padding: 0px 8px;
-	text-align: center;
-}
-#bbar ul li span:hover {
-	background-color: #A8C030;
-	color: #000;
-}
-*/
 #bbar .add-box #post_new{
   display: -webkit-box;
   padding: 5px;
@@ -331,11 +313,9 @@ body {
 }
 
 .list{
-  margin: 5px;
-  border: 1px solid #cccccc;
-  -webkit-box-shadow:0px 0px 5px #CCC;
+
 }
-.list>p{
+.list > p{
   padding: 5px;
   font-size: 1.2em;
   font-weight: bold;
@@ -343,15 +323,14 @@ body {
 
 #tabPanel{
   width:100%;
-  height:500px;
-
+  height:400px;
   float:left;
   position:relative;  /* On older OS versions "position" and "z-index" must be defined, */
   z-index:1;      /* it seems that recent webkit is less picky and works anyway. */
   overflow:hidden;
 }
 #panel-scroller{
-  width:2000px;
+  width:960px;
   height:100%;
   float:left;
   padding:0;
@@ -371,5 +350,5 @@ body {
 #panel-scroller > ul > li {
   -webkit-box-sizing:border-box;
   display:block; float:left;
-  width:320px; height:100%;
+  width:310px; height:97%;
 }

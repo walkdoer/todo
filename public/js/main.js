@@ -5,39 +5,60 @@
 
 $(function () {
     'use strict';
-    var 
+    var config = {
+            initialIndex: 0
+        },
         todoList = $('#todo-list').find('ul>li'),
         $scrollWrapper = $('.scroll_wrapper'),
         last = {},
-        scroll = {},
-        myScroll,
-        initialIndex = 'scroll-wrapper-todo',
-        $currentTab;
+        $title = $('#list-slider>.title'),
+        scroll = {};
 
-
+    /**
+     * 创建iScroll
+     */
     function createScroller(wrapper) {
         var id = wrapper.attr('id');
         if (!scroll[id]) {
             scroll[id] = new iScroll(id);
         }
     }
-    //初始化slider
-    function initSlider($list) {
-        var $pre = $('.pre'),
+    function getTitle($tab) {
+        return $tab.find('.list>p').html();
+    }
+    function changeTitle(title) {
+        $title.html(title);
+    }
+    /**
+     * 初始化slider
+     */
+    function initSlider() {
+        var $prev = $('.pre'),
             myScroll,
+            index = 0,
+            $currentTab,
             $next = $('.next');
 
         $scrollWrapper.each(function () {
-            var $this = $(this),
-                id = this.id;
-            scroll[id] = new iScroll(id);
-            $currentTab = $this;
+            var $this = $(this);
+            createScroller($this);
+            if (index++ === config.initialIndex) {
+                $currentTab = $this;
+            }
         });
-        $pre.on('click', function () {
+        $prev.on('click', function () {
+            var title;
             myScroll.scrollToPage('prev', 0);
+            $currentTab = $currentTab.prev();
+            title = getTitle($currentTab);
+            changeTitle(title);
         });
         $next.on('click', function () {
+            var title;
             myScroll.scrollToPage('next', 0);
+            $currentTab = $currentTab.next();
+            title = getTitle($currentTab);
+            changeTitle(title);
         });
 
         
