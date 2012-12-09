@@ -36,29 +36,32 @@ $(function () {
         var $prev = $('.pre'),
             myScroll,
             index = 0,
-            $currentTab,
+            count = $scrollWrapper.length,
+            $tabs = [],
             $next = $('.next');
-
         $scrollWrapper.each(function () {
             var $this = $(this);
             createScroller($this);
+            $tabs[index] = $this;
             if (index++ === config.initialIndex) {
-                $currentTab = $this;
+                changeTitle(getTitle($this));
             }
         });
+
+        function isValidRange(index) {
+
+        }
         $prev.on('click', function () {
-            var title;
+            if (index === 0) {
+                return;
+            }
             myScroll.scrollToPage('prev', 0);
-            $currentTab = $currentTab.prev();
-            title = getTitle($currentTab);
-            changeTitle(title);
         });
         $next.on('click', function () {
-            var title;
+            if (index === count - 1) {
+                return;
+            }
             myScroll.scrollToPage('next', 0);
-            $currentTab = $currentTab.next();
-            title = getTitle($currentTab);
-            changeTitle(title);
         });
 
         
@@ -67,20 +70,20 @@ $(function () {
             momentum: false,
             hScrollbar: false,
             onScrollEnd: function () {
-                
-               // document.querySelector('#indicator > li.active').className = '';
-               // document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
-                
+                index = this.currPageX;
+                $('#indicator > li.active').removeClass('active');
+                $('#indicator > li:nth-child(' + (index + 1) + ')').addClass('active');
+                changeTitle(getTitle($tabs[index]));
             }
-         });
+        });
     }
 
     function bindEvents() {
         //绑定click处理事件
-        todoList.on('click',function () {
+        todoList.on('click', function () {
             var $this = $(this),
                 $a = $this.find('a');
-            if(last.$a && last.$li) {
+            if (last.$a && last.$li) {
                 last.$a.hide();
                 last.$li.removeClass('list-item-active');
             }
@@ -92,13 +95,6 @@ $(function () {
         document.addEventListener('touchmove', function (e) {
             e.preventDefault();
         }, false);
-        //处理touch事件
-        document.addEventListener('touchstart', function (e) {
-
-        });
-        document.addEventListener('touchend', function (e) {
-
-        });
     }
     function init() {
         //初始化数据界面
