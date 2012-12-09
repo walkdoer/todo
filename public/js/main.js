@@ -24,31 +24,20 @@ $(function () {
     //初始化slider
     function initSlider($list) {
         var $pre = $('.pre'),
-            i = 0,
-            count = $list.length,
+            myScroll,
             $next = $('.next');
 
+        $scrollWrapper.each(function () {
+            var $this = $(this),
+                id = this.id;
+            scroll[id] = new iScroll(id);
+            $currentTab = $this;
+        });
         $pre.on('click', function () {
-            var $clist;
-            i -= 1;
-            if (i < 0) {
-                i = 0;
-                return;
-            }
-            $list.hide();
-            $clist = $list.eq(i).show();
-            createScroller($clist);
+            myScroll.scrollToPage('prev', 0);
         });
         $next.on('click', function () {
-            var $cList;
-            i += 1;
-            if (i >= count) {
-                i = count - 1;
-                return;
-            }
-            $list.hide();
-            $cList = $list.eq(i).show();
-            createScroller($cList);
+            myScroll.scrollToPage('next', 0);
         });
 
         
@@ -92,17 +81,6 @@ $(function () {
     }
     function init() {
         //初始化数据界面
-        $scrollWrapper.each(function () {
-            var $this = $(this),
-                id = this.id;
-            if (this.id === initialIndex) {
-                scroll[id] = new iScroll(id),
-                $currentTab = $this;
-                $this.show();
-            } else {
-                $this.hide();
-            }
-        });
         initSlider($scrollWrapper);
         bindEvents();
     }

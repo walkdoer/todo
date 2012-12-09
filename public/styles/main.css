@@ -215,9 +215,8 @@ body {
 }
 /*iscroll*/
 #todo-list .scroll_wrapper {
-  position:absolute; z-index:1;
-  top:48px; bottom:48px; left:0;
-  width:100%;
+  position:relative; z-index:1;
+  top:0px; bottom:0px; left:0px;
 }
 #todo-list .scroll_wrapper .scroller{
   position:absolute; z-index:1;
@@ -352,8 +351,25 @@ body {
   overflow:hidden;
 }
 #panel-scroller{
- width:2100px;
+  width:2000px;
   height:100%;
   float:left;
   padding:0;
+}
+
+#panel-scroller ul {
+  list-style:none;
+  display:block;
+  float:left;
+  width:100%;
+  height:100%;
+  padding:0;
+  margin:0;
+  text-align:left;
+}
+
+#panel-scroller > ul > li {
+  -webkit-box-sizing:border-box;
+  display:block; float:left;
+  width:320px; height:100%;
 }
