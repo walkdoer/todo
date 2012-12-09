@@ -42,6 +42,7 @@ var router = urlrouter(function (app) {
 	app.post('/todo/:id/edit', todo.save);
 	app.get('/todo/:id/delete', todo.delete);
 	app.get('/todo/:id/finish', todo.finish);
+	app.get('/refresh', todo.refresh);
 });
 
 app.use(router);

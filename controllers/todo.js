@@ -108,3 +108,8 @@ exports.finish = function(req, res, next) {
 		res.redirect('/');
 	});
 };
+
+exports.refresh = function (req, res) {
+    
+
+};
