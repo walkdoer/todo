@@ -5,10 +5,12 @@
 
 $(function () {
     'use strict';
-    var todoList = $('#todo-list').find('ul>li'),
+    var 
+        todoList = $('#todo-list').find('ul>li'),
         $scrollWrapper = $('.scroll_wrapper'),
         last = {},
         scroll = {},
+        myScroll,
         initialIndex = 'scroll-wrapper-todo',
         $currentTab;
 
@@ -48,6 +50,19 @@ $(function () {
             $cList = $list.eq(i).show();
             createScroller($cList);
         });
+
+        
+        myScroll = new iScroll('tabPanel', {
+            snap: true,
+            momentum: false,
+            hScrollbar: false,
+            onScrollEnd: function () {
+                
+               // document.querySelector('#indicator > li.active').className = '';
+               // document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+                
+            }
+         });
     }
 
     function bindEvents() {
